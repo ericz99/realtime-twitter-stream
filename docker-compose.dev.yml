@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: client_web
+    image: client_web
+    build: packages/client
+    expose:
+      - '3000'
+    depends_on:
+      - api
+  api:
+    container_name: server_api
+    image: server_api
+    build: packages/server
+    expose:
+      - '8080'
+    restart: unless-stopped

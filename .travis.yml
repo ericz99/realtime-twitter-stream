@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '8'
+  - '10'
+  - '12'
+  - '13'
+env:
+  - PORT=8080
+  - NODE_ENV=development
+cache:
+  yarn: true
+install:
+  - yarn install && yarn run build
+script:
+  - yarn run test

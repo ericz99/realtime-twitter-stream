@@ -1,0 +1,35 @@
+*::after,
+*::before,
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  width: 100%;
+  background: #131116;
+  color: #ffffff;
+}
+
+.container {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "fullstack-template",
+  "version": "1.0.0",
+  "description": "Fullstack MERN template, good for medium to large size application.",
+  "main": "index.js",
+  "scripts": {
+    "up": "docker-compose -f docker-compose.dev.yml up -d --build --force-recreate",
+    "down": "docker-compose -f docker-compose.dev.yml down",
+    "stop": "docker-compose -f docker-compose.dev.yml stop",
+    "start": "docker-compose -f docker-compose.dev.yml restart",
+    "prod": "docker-compose -f docker-compose.prod.yml up -d --build --force-recreate"
+  },
+  "repository": "https://github.com/ericz99/fullstack-template.git",
+  "author": "Eric Zhang <ericzhang128@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.18.2"
+  }
+}

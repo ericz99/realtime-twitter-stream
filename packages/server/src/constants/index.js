@@ -1,0 +1,5 @@
+export const NEW_TWEET = 'NEW_TWEET';
+export const FETCH_ALL_TWEET = 'FETCH_ALL_TWEET';
+export const SYNC_CONFIG = 'SYNC_CONFIG';
+export const STOP_STREAMING = 'STOP_STREAMING';
+export const START_STREAMING = 'START_STREAMING';

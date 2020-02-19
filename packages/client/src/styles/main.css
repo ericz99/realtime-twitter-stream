@@ -18,18 +18,18 @@ body {
   color: #ffffff;
 }
 
-.container {
-  height: 100%;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .header {
   font-size: 26px;
   font-weight: 800;
   letter-spacing: 1px;
   color: #ffffff;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  padding: 110px 0;
 }

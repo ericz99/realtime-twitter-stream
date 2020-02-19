@@ -1,7 +1,13 @@
 import { Router } from 'express';
 
 // # import services
-import { addAccount, removeAccount, clearAccount, clearAllTweets } from '../../services';
+import {
+  addAccount,
+  removeAccount,
+  clearAccount,
+  clearAllTweets,
+  fetchAllAccount
+} from '../../services';
 
 const route = Router();
 
@@ -11,6 +17,25 @@ export default app => {
   /** TEST ROUTE */
   route.get('/test', (req, res, next) => {
     return res.send('ok');
+  });
+
+  /** FETCH ALL ACCOUNTS */
+  route.get('/account/all', async (req, res, next) => {
+    try {
+      const accounts = await fetchAllAccount();
+      // # return user response
+      return res.status(200).json({
+        status: 200,
+        request_url: req.originalUrl,
+        data: {
+          accounts
+        }
+      });
+    } catch (e) {
+      if (e) {
+        return next(e);
+      }
+    }
   });
 
   /** ADD ACCOUNT ROUTE */
@@ -32,7 +57,7 @@ export default app => {
   });
 
   /** REMOVE ACCOUNT ROUTE */
-  route.post('/remove/account/:id', async (req, res, next) => {
+  route.delete('/remove/account/:id', async (req, res, next) => {
     const { id } = req.params;
     // # remove account
     await removeAccount(id);

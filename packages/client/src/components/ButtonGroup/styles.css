@@ -1,0 +1,13 @@
+.button-groups {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: flex-start;
+  margin: 35px 0;
+}
+
+@media (max-width: 480px) {
+  .button-groups {
+    margin: 15px 0;
+  }
+}

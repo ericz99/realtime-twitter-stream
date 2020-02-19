@@ -34,7 +34,8 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "jsx-a11y/aria-role": "off"
+    "jsx-a11y/aria-role": "off",
+    "react/no-array-index-key": "off"
   },
   "parserOptions": {
     "sourceType": "module"

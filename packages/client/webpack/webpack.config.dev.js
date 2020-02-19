@@ -11,7 +11,20 @@ module.exports = merge(base, {
   devServer: {
     port: 3000,
     open: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    host: 'localhost',
+    proxy: {
+      '/api': {
+        target: {
+          host: '0.0.0.0',
+          protocol: 'http:',
+          port: 8080
+        },
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   },
   plugins: [
     new CopyWebPackPlugin([

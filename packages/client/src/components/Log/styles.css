@@ -1,0 +1,15 @@
+.log-area {
+  padding: 15px;
+  width: 100%;
+  height: 300px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 10px;
+  font-size: 13px;
+  outline: none;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  border: 2px solid #fff;
+  color: #000;
+  background: #fff;
+  resize: none;
+}

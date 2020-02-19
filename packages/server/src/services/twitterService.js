@@ -2,6 +2,12 @@ import { Account, Tweet } from '../db';
 import { fetchUserData } from '../utils/twitter';
 import ErrorHandler from '../error';
 
+export const fetchAllAccount = async () => {
+  return await Account.find()
+    .populate('from')
+    .exec();
+};
+
 /**
  *
  * @param {*} data - User account object

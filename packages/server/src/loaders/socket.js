@@ -26,7 +26,8 @@ export default server => {
 
     // # sync config + start stream
     socket.on(SYNC_CONFIG, options => {
-      initStream(io, options);
+      console.log('hi');
+      initStream(io, { follow: [3648333676], exclude_replies: true, include_rts: false });
     });
   });
 };

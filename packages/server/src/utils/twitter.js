@@ -25,7 +25,18 @@ export const fetchUserData = async account => {
     // # return data obj
     const { data } = await Twitter.get('/users/show', params);
     // # return data
-    return data;
+    return {
+      id: data.id,
+      id_str: data.id_str,
+      name: data.name,
+      screen_name: data.screen_name,
+      location: data.location,
+      description: data.description,
+      url: data.url,
+      protected: data.protected,
+      followers_count: data.followers_count,
+      profile_pic: data.profile_image_url_https
+    };
   } catch (e) {
     if (e) {
       throw new Error(e);

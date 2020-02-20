@@ -5,9 +5,9 @@ export default React.createContext({
   tweets: [],
   error: {},
   isLoading: true,
-  startStream: () => {},
-  stopStream: () => {},
   addAccount: data => {},
   removeAccount: (accountID, pos) => {},
-  fetchAllAccount: () => {}
+  fetchAllAccount: () => {},
+  queryAccount: query => {},
+  initStream: () => {}
 });

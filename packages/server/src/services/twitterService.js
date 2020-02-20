@@ -10,6 +10,23 @@ export const fetchAllAccount = async () => {
 
 /**
  *
+ * @param {*} data - User account name
+ */
+export const searchAccount = async accountName => {
+  // # fetch user data
+  const foundAccount = await fetchUserData(accountName);
+  // # if no account found
+  if (!foundAccount) {
+    // # throw the error
+    return;
+  }
+
+  // # fetch user data
+  return foundAccount;
+};
+
+/**
+ *
  * @param {*} data - User account object
  */
 export const addAccount = async data => {

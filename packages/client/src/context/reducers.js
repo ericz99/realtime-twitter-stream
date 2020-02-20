@@ -32,6 +32,11 @@ export default function(state, action) {
         ...state,
         isLoading: true
       };
+    case NEW_TWEET:
+      return {
+        ...state,
+        tweets: [...state.tweets, action.payload]
+      };
     default:
       return state;
   }

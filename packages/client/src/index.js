@@ -4,4 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import './styles/main.css';
 
-render(<App />, document.getElementById('root'));
+import GlobalState from './context/GlobalState';
+
+render(
+  <GlobalState>
+    <App />
+  </GlobalState>,
+  document.getElementById('root')
+);

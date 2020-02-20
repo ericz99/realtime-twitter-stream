@@ -1,0 +1,34 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: #ffffff;
+  color: #000000;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.profile-pic {
+  padding: 25px;
+}
+
+.right {
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.right > div {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.right .name {
+  display: block;
+  font-size: 18px;
+  text-decoration: none;
+  color: #719da0;
+  font-weight: 600;
+  margin-bottom: 15px;
+}

@@ -6,7 +6,8 @@ import {
   removeAccount,
   clearAccount,
   clearAllTweets,
-  fetchAllAccount
+  fetchAllAccount,
+  searchAccount
 } from '../../services';
 
 const route = Router();
@@ -17,6 +18,27 @@ export default app => {
   /** TEST ROUTE */
   route.get('/test', (req, res, next) => {
     return res.send('ok');
+  });
+
+  /** SEARCH ACCOUNT ROUTE */
+  route.get('/account?', async (req, res, next) => {
+    try {
+      const { search } = req.query;
+      // # search for account
+      const account = await searchAccount(search);
+      // # return user response
+      return res.status(200).json({
+        status: 200,
+        request_url: req.originalUrl,
+        data: {
+          account
+        }
+      });
+    } catch (e) {
+      if (e) {
+        return next(e);
+      }
+    }
   });
 
   /** FETCH ALL ACCOUNTS */

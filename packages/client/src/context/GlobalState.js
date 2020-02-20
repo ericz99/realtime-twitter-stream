@@ -18,6 +18,8 @@ import {
 import MainContext from './MainContext';
 import MainReducer from './reducers';
 
+const socket = io('http://localhost:8080');
+
 const initialState = {
   accounts: [],
   tweets: [],
@@ -25,9 +27,44 @@ const initialState = {
   isLoading: true
 };
 
+export const startStream = () => {
+  console.log('starting stream');
+  // # start stream
+  socket.emit(SYNC_CONFIG);
+};
+
 export default function GlobalState({ children }) {
-  const socket = io('http://localhost:8080');
   const [mainState, dispatch] = useReducer(MainReducer, initialState);
+
+  const initStream = () => {
+    // # listen to client
+    socket.on('connect', () => {
+      console.log('client connected!');
+    });
+
+    // # listen for new tweet
+    socket.on(NEW_TWEET, tweet => {
+      dispatch({
+        type: NEW_TWEET,
+        payload: tweet
+      });
+    });
+  };
+
+  const queryAccount = async query => {
+    try {
+      const resp = await axios.get(`http://localhost:8080/api/twitter/account?search=${query}`);
+      const { account } = resp.data.data;
+      return account;
+    } catch (e) {
+      if (e) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: e.response.data
+        });
+      }
+    }
+  };
 
   const addAccount = async data => {
     try {
@@ -99,7 +136,9 @@ export default function GlobalState({ children }) {
         isLoading: mainState.isLoading,
         addAccount,
         removeAccount,
-        fetchAllAccount
+        fetchAllAccount,
+        queryAccount,
+        initStream
       }}
     >
       {children}

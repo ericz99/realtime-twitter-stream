@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import './styles.css';
 
-export default function ButtonGroup({ children }) {
-  return <div className="button-groups">{children}</div>;
-}
+const ButtonGroup = forwardRef(({ children }, ref) => {
+  return (
+    <div className="button-groups" ref={ref}>
+      {children}
+    </div>
+  );
+});
+
+export default ButtonGroup;

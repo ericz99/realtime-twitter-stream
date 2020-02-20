@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Button } from 'react-bootstrap';
 
@@ -8,53 +8,66 @@ import ButtonGroup from './components/ButtonGroup';
 import Log from './components/Log';
 
 // # import our context provider
-import GlobalState from './context/GlobalState';
-
-const controls = [
-  { id: 0, variant: 'info', className: 'clearTweetBtn', value: 'Clear Tweets' },
-  { id: 1, variant: 'warning', className: 'clearAccountBtn', value: 'Clear Account' },
-  { id: 2, variant: 'success', className: 'startStreamBtn', value: 'Start Stream' },
-  { id: 3, variant: 'danger', className: 'stopStreamBtn', value: 'Stop Stream' }
-];
+import { startStream } from './context/GlobalState';
+import MainContext from './context/MainContext';
 
 const App = () => {
-  const [log, setLog] = useState(null);
+  const [streamStarted, setStreamStarted] = useState(false);
+  const { initStream } = useContext(MainContext);
+  const streamBtnRef = useRef(null);
+
+  useEffect(() => {
+    // # init stream
+    initStream();
+  }, []);
 
   // # handle click
   const handleClick = e => {
-    console.log(e.target);
+    // startStream();
+    setStreamStarted(streamStarted => !streamStarted);
   };
 
-  return (
-    <GlobalState>
-      <div className="wrapper">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-7">
-              <TagInput />
+  let streamButton = null;
 
-              <ButtonGroup>
-                {controls.map(control => (
-                  <Button
-                    variant={control.variant}
-                    key={control.id}
-                    className={control.className}
-                    onClick={handleClick}
-                    type="button"
-                    block
-                  >
-                    {control.value}
-                  </Button>
-                ))}
-              </ButtonGroup>
-            </div>
-            <div className="col-sm-5">
-              <Log value="hello world \n hello world" disabled />
-            </div>
+  if (!streamStarted) {
+    streamButton = (
+      <Button
+        variant="success"
+        className="streamBtn"
+        onClick={handleClick}
+        type="button"
+        ref={streamBtnRef}
+        block
+      >
+        Start Stream
+      </Button>
+    );
+  } else {
+    streamButton = (
+      <Button
+        variant="danger"
+        className="streamBtn"
+        onClick={handleClick}
+        type="button"
+        ref={streamBtnRef}
+        block
+      >
+        Stop Stream
+      </Button>
+    );
+  }
+
+  return (
+    <div className="wrapper">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <TagInput />
+            <ButtonGroup>{streamButton}</ButtonGroup>
           </div>
         </div>
       </div>
-    </GlobalState>
+    </div>
   );
 };
 

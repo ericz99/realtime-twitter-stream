@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import MainContext from '../../../context/MainContext';
+import { queryAccount } from '../../../context/actions';
 import LoadSpinner from '../../LoadSpinner';
 
 import './styles.css';
@@ -9,7 +10,7 @@ import './styles.css';
 export default function ResultBox({ query }) {
   const [searchResult, setSearchResult] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const { error, queryAccount } = useContext(MainContext);
+  const { store, dispatch } = useContext(MainContext);
 
   useEffect(() => {
     if (query) {

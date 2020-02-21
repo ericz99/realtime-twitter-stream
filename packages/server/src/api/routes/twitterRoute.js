@@ -64,12 +64,17 @@ export default app => {
   route.post('/add/account', async (req, res, next) => {
     try {
       // # add new account
-      await addAccount(req.body);
+      const { _doc } = await addAccount(req.body);
       // # return user response
       return res.status(200).json({
         status: 200,
         request_url: req.originalUrl,
-        message: 'Successfully added account!'
+        message: 'Successfully added account!',
+        data: {
+          account: {
+            ..._doc
+          }
+        }
       });
     } catch (e) {
       if (e) {

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 
 import InputField from '../InputField';
 import MainContext from '../../context/MainContext';
+import { fetchAllAccount, addAccount } from '../../context/actions';
 import TagList from './TagList';
 import ResultBox from './ResultBox';
 
@@ -10,31 +11,23 @@ import './styles.css';
 export default function TagInput() {
   const [account, setAccount] = useState(null);
   const inputRef = useRef(null);
-  const {
-    accounts,
-    fetchAllAccount,
-    addAccount,
-    removeAccount,
-    isLoading,
-    error,
-    tweets
-  } = useContext(MainContext);
+  const { store, dispatch } = useContext(MainContext);
 
   useEffect(() => {
     const input = inputRef.current;
     // # disabled input form
-    if (isLoading) {
+    if (store.isLoading) {
       input.setAttribute('disabled', true);
     }
 
     const fetchData = async () => {
-      await fetchAllAccount();
+      dispatch(await fetchAllAccount());
     };
 
     fetchData();
   }, [inputRef]);
 
-  if (!isLoading) {
+  if (!store.isLoading) {
     const input = inputRef.current;
     input.removeAttribute('disabled');
   }
@@ -42,7 +35,7 @@ export default function TagInput() {
   // # add tag
   const addTag = async e => {
     e.persist();
-    await addAccount({ accountName: e.target.value });
+    dispatch(await addAccount({ accountName: e.target.value }));
     e.target.value = '';
     setAccount(null);
   };
@@ -60,7 +53,7 @@ export default function TagInput() {
 
   return (
     <div className="tags-input">
-      <TagList accounts={accounts} removeTag={removeAccount} />
+      <TagList accounts={store.accounts} />
       <InputField
         type="text"
         className="accountInput"

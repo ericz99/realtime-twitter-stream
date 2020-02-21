@@ -39,8 +39,8 @@ export const stopStream = options => {
   socket.emit(STOP_STREAMING, options);
 };
 
-export default function GlobalState({ children }) {
-  const [mainState, dispatch] = useReducer(MainReducer, initialState);
+export default function GlobalState({ children, ...props }) {
+  const [store, dispatch] = useReducer(MainReducer, initialState);
 
   const initStream = () => {
     // # listen to client
@@ -57,96 +57,10 @@ export default function GlobalState({ children }) {
     });
   };
 
-  const queryAccount = async query => {
-    try {
-      const resp = await axios.get(`http://localhost:8080/api/twitter/account?search=${query}`);
-      const { account } = resp.data.data;
-      return account;
-    } catch (e) {
-      if (e) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: e.response.data
-        });
-      }
-    }
-  };
-
-  const addAccount = async data => {
-    try {
-      // # make request
-      const resp = await axios.post('http://localhost:8080/api/twitter/add/account', data);
-      // # dispatch action
-      dispatch({
-        type: ADDED_ACCOUNT,
-        payload: data
-      });
-    } catch (e) {
-      if (e) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: e.response.data
-        });
-      }
-    }
-  };
-
-  const removeAccount = async (accountID, pos) => {
-    try {
-      // # make request
-      const resp = await axios.delete(
-        `http://localhost:8080/api/twitter/remove/account/${accountID}`
-      );
-      // # dispatch action
-      dispatch({
-        type: REMOVED_ACCOUNT,
-        payload: pos
-      });
-    } catch (e) {
-      if (e) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: e.response.data
-        });
-      }
-    }
-  };
-
-  const fetchAllAccount = async accounts => {
-    try {
-      // # sim loading
-      dispatch({ type: IS_LOADING });
-      // # make request
-      const resp = await axios.get('http://localhost:8080/api/twitter/account/all');
-      // # dispatch action
-      dispatch({
-        type: FETCH_ACCOUNTS,
-        payload: resp.data.data.accounts
-      });
-    } catch (e) {
-      if (e) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: e.response.data
-        });
-      }
-    }
-  };
+  const data = { store, dispatch, initStream };
 
   return (
-    <MainContext.Provider
-      value={{
-        accounts: mainState.accounts,
-        tweets: mainState.tweets,
-        error: mainState.error,
-        isLoading: mainState.isLoading,
-        addAccount,
-        removeAccount,
-        fetchAllAccount,
-        queryAccount,
-        initStream
-      }}
-    >
+    <MainContext.Provider value={data} {...props}>
       {children}
     </MainContext.Provider>
   );

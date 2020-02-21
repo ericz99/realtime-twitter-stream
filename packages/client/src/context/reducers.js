@@ -9,7 +9,14 @@ import {
   IS_LOADING
 } from './types';
 
-export default function(state, action) {
+const initialState = {
+  accounts: [],
+  tweets: [],
+  error: {},
+  isLoading: true
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case ADDED_ACCOUNT:
       return {

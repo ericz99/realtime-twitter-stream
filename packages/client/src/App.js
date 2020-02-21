@@ -15,18 +15,18 @@ import MainContext from './context/MainContext';
 const App = () => {
   const [streamStarted, setStreamStarted] = useState(false);
   const [userIds, setUserIds] = useState([]);
-  const { initStream, accounts } = useContext(MainContext);
+  const { store, dispatch } = useContext(MainContext);
   const streamBtnRef = useRef(null);
 
   useEffect(() => {
     // # init stream
-    initStream();
+    // initStream();
 
-    if (accounts.length > 0) {
-      const listOfIds = accounts.map(({ accountID }) => accountID);
+    if (store.accounts.length > 0) {
+      const listOfIds = store.accounts.map(({ accountID }) => accountID);
       setUserIds(listOfIds);
     }
-  }, [accounts]);
+  }, [store.accounts]);
 
   // # handle start stream
   const startStreamHandler = e => {

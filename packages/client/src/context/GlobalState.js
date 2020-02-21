@@ -27,10 +27,16 @@ const initialState = {
   isLoading: true
 };
 
-export const startStream = () => {
+export const startStream = options => {
   console.log('starting stream');
   // # start stream
-  socket.emit(SYNC_CONFIG);
+  socket.emit(SYNC_CONFIG, options);
+};
+
+export const stopStream = options => {
+  console.log('stopping stream');
+  // # start stream
+  socket.emit(STOP_STREAMING, options);
 };
 
 export default function GlobalState({ children }) {

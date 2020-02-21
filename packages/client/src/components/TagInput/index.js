@@ -58,7 +58,6 @@ export default function TagInput() {
   // # handle change
   const handleChange = e => setAccount(e.target.value);
 
-  console.log(tweets);
   return (
     <div className="tags-input">
       <TagList accounts={accounts} removeTag={removeAccount} />

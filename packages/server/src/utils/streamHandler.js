@@ -35,7 +35,6 @@ export const startEarly = (stream, io) => {
 export const stopStream = (stream, io) => {
   // # stop streaming
   stream.stop();
-  io.emit(STOP_STREAMING);
 };
 
 /**
@@ -46,5 +45,4 @@ export const stopStream = (stream, io) => {
 export const startStream = (stream, io) => {
   // # stop streaming
   stream.start();
-  io.emit(START_STREAMING);
 };

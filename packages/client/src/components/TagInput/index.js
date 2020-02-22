@@ -8,7 +8,7 @@ import ResultBox from './ResultBox';
 
 import './styles.css';
 
-export default function TagInput() {
+export default function TagInput({ streamStarted }) {
   const [account, setAccount] = useState(null);
   const inputRef = useRef(null);
   const { store, dispatch } = useContext(MainContext);
@@ -61,6 +61,7 @@ export default function TagInput() {
         name="account"
         onKeyUp={handleKeyUp}
         onChange={handleChange}
+        disabled={streamStarted}
         ref={inputRef}
       />
       <ResultBox query={account} />

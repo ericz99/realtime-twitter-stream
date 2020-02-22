@@ -1,7 +1,7 @@
 import socket from 'socket.io';
 
 // # import twitter stuff
-import { initStream, streamObj } from '../utils/twitter';
+import { initStream, stopInitStream } from '../utils/twitter';
 
 // # import stream handlers
 import { startStream, stopStream } from '../utils/streamHandler';
@@ -16,17 +16,16 @@ export default server => {
   io.on('connection', socket => {
     // # listen for start stream
     socket.on(START_STREAMING, options => {
-      startStream(streamObj(options));
+      // startStream(streamObj(options));
     });
 
     // # listen for stop stream
-    socket.on(START_STREAMING, options => {
-      stopStream(streamObj(options));
+    socket.on(STOP_STREAMING, options => {
+      stopInitStream(options);
     });
 
     // # sync config + start stream
     socket.on(SYNC_CONFIG, options => {
-      console.log('hi');
       initStream(io, options);
     });
   });

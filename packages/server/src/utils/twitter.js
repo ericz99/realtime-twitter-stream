@@ -58,4 +58,8 @@ export const initStream = (io, options) => {
 /**
  * @returns - Returns twitter objects
  */
-export const streamObj = options => Twitter.stream('statuses/filter', options);
+export const stopInitStream = options => {
+  const stream = Twitter.stream('statuses/filter', options);
+  // # stop stream
+  return stopStream(stream);
+};

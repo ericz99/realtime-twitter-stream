@@ -1,10 +1,12 @@
-## Fullstack Template - STILL IN DEVELOPMENT
+## Realtime Twitter Stream
 
-Simple easy to use template for experience developer.
+Easy to use interface where you add accounts to stream realtime tweets on twitter platform.
+
+This repository is inspired by [react-tweets](https://github.com/scotch-io/react-tweets)
 
 ### Installation
 
-Fullstack Template requires the following...
+Realtime Twitter Stream requires the following...
 
 - [Node.js (LTS Version)](http://nodejs.org/)
 - [YarnPKG](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
@@ -30,12 +32,16 @@ yarn run prod
 
 ```
 
+## Pictures
+
+![webapp-1](https://i.imgur.com/rFyzVVL.png)
+![webapp-2](https://i.imgur.com/OGTDRos.png)
+
 ### Technology Used
 
 - [ReactJS](https://reactjs.org/)
 - [NodeJS](https://nodejs.org/en/)
-- [Docker](https://www.docker.com/)
-- [Nginx](http://nginx.org/en/docs/)
+- [Socketio](https://socket.io/)
 
 ## App Info
 

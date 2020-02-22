@@ -33,7 +33,6 @@ const App = () => {
 
     // # ONLY if stream started
     if (streamStarted) {
-      console.log('hi');
       // # listen to tweets
       socket.on(NEW_TWEET, tweet => {
         dispatch({

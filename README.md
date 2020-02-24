@@ -15,20 +15,14 @@ Quick start:
 
 ```bash
 
-# To run in development mode
-yarn run up
+# To run build version
+yarn run build-prod
 
-# To tear down the container
-yarn run down
-
-# To stop the container
-yarn run stop
-
-# To start back the container
+# To run server
 yarn run start
 
-# To run in production
-yarn run prod
+# To deploy on heroku
+heroku create && git commit -m "Deploying on heroku" && git push heroku master
 
 ```
 

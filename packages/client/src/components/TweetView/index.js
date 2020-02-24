@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import './styles.css';
 
 export default function TweetView({ tweets }) {
+  const tweetListRef = useRef(null);
+
+  // # scroll to bottom
+  const scrollToBottom = () => {
+    tweetListRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(scrollToBottom, [tweets]);
+
   return (
     <div className="tweet-viewer">
       <ul className="tweet-list">
@@ -22,6 +31,8 @@ export default function TweetView({ tweets }) {
             </div>
           </li>
         ))}
+
+        <li ref={tweetListRef} />
       </ul>
     </div>
   );

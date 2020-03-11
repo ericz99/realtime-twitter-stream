@@ -20,7 +20,7 @@ const App = () => {
   const [streamStarted, setStreamStarted] = useState(false);
   const { store, dispatch, initStream } = useContext(MainContext);
   const streamBtnRef = useRef(null);
-  const ENDPOINT = 'http://localhost:8080';
+  const ENDPOINT = ':8080';
 
   useEffect(() => {
     // # init stream

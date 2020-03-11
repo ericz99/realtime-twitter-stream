@@ -20,11 +20,10 @@ const App = () => {
   const [streamStarted, setStreamStarted] = useState(false);
   const { store, dispatch, initStream } = useContext(MainContext);
   const streamBtnRef = useRef(null);
-  const ENDPOINT = ':8080';
 
   useEffect(() => {
     // # init stream
-    socket = io(ENDPOINT);
+    socket = io();
 
     // # listen to client
     socket.on('connect', () => {

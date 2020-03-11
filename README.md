@@ -6,7 +6,7 @@ This repository is inspired by [react-tweets](https://github.com/scotch-io/react
 
 - https://whispering-plateau-03544.herokuapp.com/
 
-### Installation
+## Installation
 
 Realtime Twitter Stream requires the following...
 
@@ -26,6 +26,9 @@ yarn run start
 # To deploy on heroku
 heroku create && git commit -m "Deploying on heroku" && git push heroku master
 
+# Rename .env.example to .env, and fill in the each fields.
+.env.example => .env
+
 ```
 
 ## Pictures
@@ -33,7 +36,7 @@ heroku create && git commit -m "Deploying on heroku" && git push heroku master
 ![webapp-1](https://i.imgur.com/rFyzVVL.png)
 ![webapp-2](https://i.imgur.com/OGTDRos.png)
 
-### Technology Used
+## Technology Used
 
 - [ReactJS](https://reactjs.org/)
 - [NodeJS](https://nodejs.org/en/)

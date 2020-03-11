@@ -46,7 +46,7 @@ const App = () => {
 
       socket.off();
     };
-  }, [ENDPOINT, streamStarted]);
+  }, [streamStarted]);
 
   // # handle start stream
   const startStreamHandler = e => {

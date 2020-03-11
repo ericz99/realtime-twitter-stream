@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import path from 'path';
 
 // # import config
 import { api } from '../config';
@@ -19,6 +20,18 @@ export default app => {
 
   /** LOAD API */
   app.use(api.prefix, mainApi);
+
+  // # if production
+  if (process.env.NODE_ENV !== 'development') {
+    // # set static path
+    app.use(express.static(path.join(__dirname, '..', '..', '..', '/client', '/build')));
+    // # get html from dist
+    app.get('*', (req, res, next) => {
+      return res.sendFile(
+        path.join(__dirname, '..', '..', '..', '/client', '/build', 'index.html')
+      );
+    });
+  }
 
   /** INVALID ROUTE HANDLER */
   app.use((req, res, next) => {

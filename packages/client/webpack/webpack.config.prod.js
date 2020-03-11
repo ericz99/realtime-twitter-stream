@@ -1,5 +1,4 @@
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
@@ -12,14 +11,15 @@ module.exports = merge(base, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, '..', 'dist'),
-    filename: '[name].bundle.js',
-    sourceMapFilename: '[name].js.map'
+    path: path.resolve(__dirname, '..', 'build'),
+    filename: '[name]-[hash].js',
+    publicPath: '/'
   },
   optimization: {
     removeAvailableModules: false,
     removeEmptyChunks: false,
     splitChunks: false,
+    minimize: true,
     minimizer: [
       new TerserJSPlugin({}),
       new OptimizeCSSAssetsPlugin({}),
@@ -33,13 +33,11 @@ module.exports = merge(base, {
       })
     ]
   },
+  resolve: {
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    extensions: ['*', '.js', '.jsx', '.css']
+  },
   plugins: [
-    new UglifyJsPlugin({
-      sourceMap: false,
-      uglifyOptions: {
-        compress: true
-      }
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'

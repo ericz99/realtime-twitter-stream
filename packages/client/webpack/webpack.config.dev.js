@@ -26,6 +26,11 @@ module.exports = merge(base, {
       }
     }
   },
+  resolve: {
+    // allows us to do absolute imports from "src"
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    extensions: ['*', '.js', '.jsx']
+  },
   plugins: [
     new CopyWebPackPlugin([
       {

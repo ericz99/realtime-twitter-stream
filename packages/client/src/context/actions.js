@@ -17,7 +17,7 @@ export const setLoading = () => {
 
 export const queryAccount = async query => {
   try {
-    const resp = await axios.get(`http://localhost:8080/api/twitter/account?search=${query}`);
+    const resp = await axios.get(`/api/twitter/account?search=${query}`);
     const { account } = resp.data.data;
     return account;
   } catch (e) {
@@ -33,7 +33,7 @@ export const queryAccount = async query => {
 export const addAccount = async data => {
   try {
     // # make request
-    const resp = await axios.post('http://localhost:8080/api/twitter/add/account', data);
+    const resp = await axios.post('api/twitter/add/account', data);
     const { account } = resp.data.data;
     // # dispatch action
     return {
@@ -53,9 +53,7 @@ export const addAccount = async data => {
 export const removeAccount = async (accountID, pos) => {
   try {
     // # make request
-    const resp = await axios.delete(
-      `http://localhost:8080/api/twitter/remove/account/${accountID}`
-    );
+    const resp = await axios.delete(`/api/twitter/remove/account/${accountID}`);
 
     // # dispatch action
     return {
@@ -77,7 +75,7 @@ export const fetchAllAccount = async accounts => {
     // # sim loading
     setLoading();
     // # make request
-    const resp = await axios.get('http://localhost:8080/api/twitter/account/all');
+    const resp = await axios.get('/api/twitter/account/all');
     // # dispatch action
     return {
       type: FETCH_ACCOUNTS,

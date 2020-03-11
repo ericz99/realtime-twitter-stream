@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 // # check for .env file
 if (!dotenv.config()) {
   throw new Error('Please create a .env file in /packages/server');

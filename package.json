@@ -9,8 +9,8 @@
     "stop": "docker-compose -f docker-compose.dev.yml stop",
     "prod": "docker-compose -f docker-compose.prod.yml up -d --build --force-recreate",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd ./packages/client && yarn install --production=false && yarn run build",
-    "build-prod": "cd ./packages/client && yarn run build && cd ../.. && yarn run server",
-    "start": "node index.js"
+    "build-prod": "cd ./packages/client && yarn run build && cd ../.. && yarn run start",
+    "start": "set NODE_ENV=production && cd ./packages/server/src && yarn run start"
   },
   "repository": "https://github.com/ericz99/fullstack-template.git",
   "author": "Eric Zhang <ericzhang128@gmail.com>",

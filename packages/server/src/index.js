@@ -11,6 +11,7 @@ import { backlog, port } from './config';
   const server = http
     .createServer(app)
     .listen(port, backlog, console.log(`Server is listening on port ${port}`));
+
   // # load our api or anything
   await require('./loaders').default(app, server);
 })();

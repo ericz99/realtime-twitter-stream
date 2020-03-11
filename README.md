@@ -26,7 +26,7 @@ yarn run start
 # To deploy on heroku
 heroku create && git commit -m "Deploying on heroku" && git push heroku master
 
-# Rename .env.example to .env, and fill in the each fields.
+# Rename .env.example (in /packages/server) to .env, and fill in the each fields.
 .env.example => .env
 
 ```
